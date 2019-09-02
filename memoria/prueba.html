@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" ></script>
+  </head>  
+  <body>
+    <div id='root'></div>
+    
+    <script type='text/babel'>
+      
+
+        
+
+        class Bullet extends React.Component {
+        render() {
+            // console.log('Bullet:render')
+            const style = {
+            display: 'grid',
+            gridTemplateRows: '168px 168px 168px 168px',
+            gridTemplateColumns: '110px 110px 110px 110px',
+            gridColumnGap: '5px',
+            gridRowGap: '5px'
+            }
+            const x = {
+                background: 'red'
+            }
+            return ( <div style={style} >
+                    <div style={x}/>
+                    <div style={x}/>
+                    <div style={x}/>
+                    <div style={x}/>
+                    <div style={x}/>
+
+                </div>)
+        }
+        }
+
+
+        ReactDOM.render(
+        <Bullet />,
+        document.getElementById('root')
+        )
+
+
+
+
+
+            
+    </script>
+          
+  </body>
+</html>

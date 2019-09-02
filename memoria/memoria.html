@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js" ></script>
+  </head>  
+  <body>
+    <div id='root'></div>
+    
+    <script type='text/babel'>
+      
+
+        
+
+        class Memoria extends React.Component {
+          constructor(props) {
+            super(props)
+            this.imagenes = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg'],
+            this.deck = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,0,0],
+
+            this.state = {
+              parejaEscogida: [],
+              volteadas: [],
+              turno: 0
+            }
+            console.log(this.deck)
+            this.shuffleDeck = this.shuffle(this.deck)
+            console.log(this.shuffleDeck)
+
+
+          }
+
+          handleClick(props){
+            if(this.props.flipped == True){
+              this.props.flipped = False
+            }
+            if(this.props.flipped == False){
+              this.props.flipped = True
+            }
+
+          }
+
+          shuffle(array){
+            let currentIndex = array.length, temporaryValue, randomIndex;
+            while (0 !== currentIndex) {
+              randomIndex = Math.floor(Math.random() * currentIndex);
+              currentIndex -= 1;
+              temporaryValue = array[currentIndex];
+              array[currentIndex] = array[randomIndex];
+              array[randomIndex] = temporaryValue;
+            }
+            return array
+          }
+          
+
+
+          render() {
+            // console.log('Bullet:render')
+            const style = {
+            display: 'grid',
+            gridTemplateRows: '168px 168px 168px 168px',
+            gridTemplateColumns: '110px 110px 110px 110px',
+            gridColumnGap: '5px',
+            gridRowGap: '5px'
+            }
+            const x = {
+                background: 'red'
+            }
+            return ( 
+              <div style={style}>
+                {
+                  this.shuffleDeck.map((card,index)=> {
+                    return <Card key = {index} back = {"0.jpg"}  front ={this.imagenes[card]} flipped= "True" />
+                  })
+                }
+
+              </div>
+              )
+          }
+
+        }
+        
+        class Card extends React.Component {
+          render(){
+            const atras = {
+              position: "relative"
+            }
+            const imgStyle = {
+              position: "absolute",
+              width: "100%",
+              heigth: "100%"
+            }
+            return (
+              <div style={atras}>
+                {
+                  this.props.flipped ?
+                    <img src={this.props.front} style={imgStyle} onClick = {this.handleClick}></img> :
+                    <img src={this.props.back} style={imgStyle} onClick = {this.handleClick}></img>
+                }
+              </div>
+            )
+          }
+        }
+
+
+
+        ReactDOM.render(
+        <Memoria />,
+        document.getElementById('root')
+        )
+
+
+
+
+
+            
+    </script>
+          
+  </body>
+</html>
