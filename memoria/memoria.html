@@ -6,7 +6,7 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js" ></script>
   </head>  
-  <body>
+  <body background="b.jpg">
     <div id='root'></div>
     
     <script type='text/babel'>
@@ -88,20 +88,22 @@
             display: 'grid',
             gridTemplateRows: '168px 168px 168px 168px',
             gridTemplateColumns: '110px 110px 110px 110px',
-            gridColumnGap: '5px',
-            gridRowGap: '5px'
+            gridColumnGap: '15px',
+            gridRowGap: '15px',
             }
-            const x = {
-                background: 'red'
+            const centrado = {
+                display: 'flex',
+                justifyContent: 'center'
             }
             return ( 
-              <div style={style}>
-                {
-                  this.shuffleDeck.map((card,index)=> {
-                    return <Card key = {index} back = {"0.jpg"}  front ={this.imagenes[card]} flipped={this.state.volteadas.indexOf(index) > -1 || this.state.parejasEncontradas.indexOf(index) > -1} onClick = {this.handleClick.bind(this, index,card)} />
-                  })
-                }
-
+              <div style={centrado}>
+                <div style={style}>
+                  {
+                    this.shuffleDeck.map((card,index)=> {
+                      return <Card key = {index} back = {"0.jpg"}  front ={this.imagenes[card]} flipped={this.state.volteadas.indexOf(index) > -1 || this.state.parejasEncontradas.indexOf(index) > -1} onClick = {this.handleClick.bind(this, index,card)} />
+                    })
+                  }
+                </div>
               </div>
               )
           }
@@ -127,6 +129,25 @@
                     <img src={this.props.front} style={imgStyle} onClick = {this.handleClick}></img> :
                     <img src={this.props.back} style={imgStyle} onClick = {this.handleClick}></img>
                 }
+              </div>
+            )
+          }
+        }
+
+        class Counter extends React.Component{
+          constructor(props){
+            super(props)
+          }
+          render(){
+            const style = {
+              display: "flex",
+              width: '100px',
+              height: '100px',
+              fontSize: '75px'
+            }
+            return(
+              <div style={style}>
+                {this.props.turno}
               </div>
             )
           }
