@@ -21,9 +21,11 @@
             this.deck = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,0,0],
 
             this.state = {
-              parejaEscogida: [],
+              parejasEncontradas: [],
               volteadas: [],
+              comparacion: [],
               turno: 0
+
             }
             console.log(this.deck)
             this.shuffleDeck = this.shuffle(this.deck)
@@ -32,14 +34,38 @@
 
           }
 
-          handleClick(props){
-            if(this.props.flipped == True){
-              this.props.flipped = False
+          handleClick(index,card){
+            if(this.state.volteadas.length < 2 && !this.state.volteadas.includes(index)){
+              this.setState({
+                volteadas: [...this.state.volteadas, index],
+                comparacion: [...this.state.comparacion, card]
+              })
             }
-            if(this.props.flipped == False){
-              this.props.flipped = True
+            
+            if(this.state.volteadas.length == 2){
+              console.log("hay dos cartas",this.state.volteadas, this.state.volteadas[0] == this.state.volteadas[1])
+              if(this.state.comparacion[0] == this.state.comparacion[1]){
+                this.setState({
+                  parejasEncontradas: [...this.state.parejasEncontradas,this.state.volteadas[0],this.state.volteadas[1]]
+                })
+              } 
+              this.setState({
+                volteadas: [],
+                comparacion: []
+              })
+              this.state.turno++
+              console.log(this.state.turno)
             }
+            
 
+              
+
+            console.log("me clickeo", [ index,card])
+            console.log("comparacion", this.state.comparacion)
+            console.log("volteadas", this.state.volteadas)
+            console.log("parejas", this.state.parejasEncontradas)
+            
+            
           }
 
           shuffle(array){
@@ -72,7 +98,7 @@
               <div style={style}>
                 {
                   this.shuffleDeck.map((card,index)=> {
-                    return <Card key = {index} back = {"0.jpg"}  front ={this.imagenes[card]} flipped= "True" />
+                    return <Card key = {index} back = {"0.jpg"}  front ={this.imagenes[card]} flipped={this.state.volteadas.indexOf(index) > -1 || this.state.parejasEncontradas.indexOf(index) > -1} onClick = {this.handleClick.bind(this, index,card)} />
                   })
                 }
 
@@ -81,10 +107,12 @@
           }
 
         }
+
+        
         
         class Card extends React.Component {
           render(){
-            const atras = {
+            const style = {
               position: "relative"
             }
             const imgStyle = {
@@ -93,7 +121,7 @@
               heigth: "100%"
             }
             return (
-              <div style={atras}>
+              <div style={style} onClick = {this.props.onClick}>
                 {
                   this.props.flipped ?
                     <img src={this.props.front} style={imgStyle} onClick = {this.handleClick}></img> :
