@@ -58,10 +58,15 @@
               this.state.turno++
               console.log(this.state.turno)
             }
+
             
 
               
-
+            setTimeout(() => {
+              if (this.state.parejasEncontradas.length == 16){
+                alert("YOU WON")
+              }
+            },100)
             console.log("me clickeo", [ index,card])
             console.log("comparacion", this.state.comparacion)
             console.log("volteadas", this.state.volteadas)
@@ -70,6 +75,8 @@
             
           }
 
+          
+          
           shuffle(array){
             let currentIndex = array.length, temporaryValue, randomIndex;
             while (0 !== currentIndex) {
@@ -82,8 +89,8 @@
             return array
           }
           
-
-
+          
+          
           render() {
             // console.log('Bullet:render')
             const style = {
