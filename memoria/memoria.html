@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Hello!</title>
+    <link rel="stylesheet" href="memoria.css">
+
+    <title>Memoria</title>
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js" ></script>
   </head>  
-  <body background="b.jpg">
+  <body >
     <div id='root'></div>
     
     <script type='text/babel'>
@@ -95,14 +97,34 @@
                 display: 'flex',
                 justifyContent: 'center'
             }
+            const titulo = {
+              display: "flex",
+              justifyContent: "center",
+              color: "#B8860B",
+              fontFamily: "arial",
+              fontSize: "40px",
+              fontWeight: "bold"
+            }
             return ( 
-              <div style={centrado}>
-                <div style={style}>
-                  {
-                    this.shuffleDeck.map((card,index)=> {
-                      return <Card key = {index} back = {"0.jpg"}  front ={this.imagenes[card]} flipped={this.state.volteadas.indexOf(index) > -1 || this.state.parejasEncontradas.indexOf(index) > -1} onClick = {this.handleClick.bind(this, index,card)} />
-                    })
-                  }
+              <div>
+                <div style={centrado}>
+                  <div style={titulo}> IT'S TIME TO MEMORY! </div>
+                </div>
+                <div style={centrado}>
+                  <div style={style}>
+                    {
+                      this.shuffleDeck.map((card,index)=> {
+                        return <Card key = {index} back = {"0.jpg"}  front ={this.imagenes[card]} flipped={this.state.volteadas.indexOf(index) > -1 || this.state.parejasEncontradas.indexOf(index) > -1} onClick = {this.handleClick.bind(this, index,card)} />
+                      })
+                    }
+                  </div>
+                </div>
+                <div style={centrado}>
+                    <div style={titulo}>TURNOS REALIZADOS</div>
+                </div>
+                <div style={centrado}>
+
+                  <Counter turno = {this.state.turno} />
                 </div>
               </div>
               )
@@ -137,13 +159,18 @@
         class Counter extends React.Component{
           constructor(props){
             super(props)
+            this.state = {
+
+            }
           }
           render(){
             const style = {
               display: "flex",
               width: '100px',
               height: '100px',
-              fontSize: '75px'
+              fontSize: '75px',
+              color: "#B8860B",
+              fontFamily: "arial"
             }
             return(
               <div style={style}>
