@@ -1,0 +1,71 @@
+/* LoadingScreen.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 20px;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(184, 134, 11, 0.2);
+  border-top-color: #ffd700;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loadingText {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  color: rgba(255, 215, 0, 0.75);
+  animation: breathe 1.8s ease infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+.errorIcon {
+  font-size: 3rem;
+}
+
+.errorText {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: #ff6b6b;
+  margin: 0;
+}
+
+.errorDetail {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 107, 107, 0.7);
+  margin: 0;
+}
+
+.retryBtn {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #b8860b, #ffd700);
+  color: #1a0a2e;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.retryBtn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}

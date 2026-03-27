@@ -1,0 +1,11 @@
+/* GameBoard.module.css */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--columns, 4), 1fr);
+  gap: clamp(8px, 1.5vw, 16px);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(8px, 2vw, 24px);
+}
