@@ -1,0 +1,157 @@
+/* Card.module.css — Individual memory card with 3D flip animation */
+
+.card {
+  perspective: 900px;
+  cursor: pointer;
+  user-select: none;
+  /* Height fills the grid row; width is derived from the aspect ratio so proportions are preserved */
+  height: 100%;
+  width: auto;
+  aspect-ratio: 0.714; /* Standard Yu-Gi-Oh! card ratio */
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px;
+}
+
+.flipped .inner {
+  transform: rotateY(180deg);
+}
+
+.back,
+.front {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ── Back face ─────────────────────────────────────── */
+.back {
+  background: linear-gradient(135deg, #1a0a2e 0%, #0d0d2b 50%, #1a0a2e 100%);
+  border: 2px solid #b8860b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(184, 134, 11, 0.3);
+}
+
+.backPattern {
+  width: 85%;
+  height: 85%;
+  border: 2px solid rgba(184, 134, 11, 0.5);
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 6px,
+      rgba(184, 134, 11, 0.08) 6px,
+      rgba(184, 134, 11, 0.08) 12px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 6px,
+      rgba(184, 134, 11, 0.08) 6px,
+      rgba(184, 134, 11, 0.08) 12px
+    );
+  position: relative;
+}
+
+.backPattern::after {
+  content: '★';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: rgba(184, 134, 11, 0.6);
+}
+
+/* ── Front face ─────────────────────────────────────── */
+.front {
+  transform: rotateY(180deg);
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+}
+
+.front img {
+  width: 100%;
+  flex: 1;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.cardName {
+  font-family: 'Exo 2', sans-serif;
+  font-size: clamp(0.45rem, 1.2vw, 0.65rem);
+  font-weight: 600;
+  color: #ffd700;
+  text-align: center;
+  padding: 3px 4px;
+  background: rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+/* ── Matched state ──────────────────────────────────── */
+.matched .inner {
+  transform: rotateY(180deg);
+}
+
+.matched .front {
+  border-color: #00e676;
+  box-shadow: 0 0 18px rgba(0, 230, 118, 0.6), inset 0 0 10px rgba(0, 230, 118, 0.1);
+}
+
+.matched {
+  animation: matchPop 0.4s ease forwards;
+}
+
+@keyframes matchPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* ── Miss (mismatch) state ──────────────────────────── */
+.miss .front {
+  border-color: #ff1744;
+  box-shadow: 0 0 14px rgba(255, 23, 68, 0.7);
+}
+
+.miss {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+/* ── Hover state ────────────────────────────────────── */
+.card:not(.flipped):not(.matched):hover .inner {
+  transform: rotateY(15deg) translateY(-4px);
+  filter: brightness(1.1);
+}
+
+.card:not(.flipped):not(.matched):hover .back {
+  box-shadow: 0 0 20px rgba(184, 134, 11, 0.55);
+}
