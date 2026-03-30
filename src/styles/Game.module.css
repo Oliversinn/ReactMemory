@@ -4,9 +4,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(12px, 2vw, 20px);
-  padding: clamp(12px, 2vw, 24px) clamp(8px, 2vw, 16px) clamp(24px, 4vw, 40px);
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  gap: clamp(4px, 1vh, 12px);
+  padding: clamp(6px, 1.2vh, 14px) clamp(8px, 2vw, 16px) clamp(6px, 1.2vh, 14px);
 }
 
 /* ── Header ─────────────────────────────────────────── */
@@ -16,7 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: clamp(4px, 0.8vh, 10px);
 }
 
 .title {
@@ -30,7 +32,7 @@
 
 .titleYgo {
   font-family: 'Cinzel', serif;
-  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-size: clamp(1.1rem, 2.8vh, 2rem);
   font-weight: 900;
   color: #ffd700;
   letter-spacing: 0.12em;
@@ -41,7 +43,7 @@
 
 .titleMemory {
   font-family: 'Cinzel', serif;
-  font-size: clamp(1rem, 2.8vw, 1.6rem);
+  font-size: clamp(0.75rem, 1.8vh, 1.3rem);
   font-weight: 400;
   color: rgba(255, 215, 0, 0.7);
   letter-spacing: 0.35em;

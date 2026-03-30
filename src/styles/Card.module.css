@@ -5,7 +5,7 @@
   cursor: pointer;
   user-select: none;
   width: 100%;
-  aspect-ratio: 0.714; /* Standard Yu-Gi-Oh! card ratio */
+  /* Height is defined by grid-auto-rows: 1fr on the board — no aspect-ratio override */
 }
 
 .inner {
