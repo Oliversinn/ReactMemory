@@ -11,7 +11,7 @@ export default function GameBoard({ deck, flipped, matched, lastResult, onCardCl
   return (
     <div
       className={styles.board}
-      style={{ '--columns': columns }}
+      style={{ '--columns': columns, '--rows': Math.ceil(deck.length / columns) }}
     >
       {deck.map((card) => (
         <Card

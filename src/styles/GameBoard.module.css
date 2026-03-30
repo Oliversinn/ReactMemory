@@ -2,14 +2,17 @@
 
 .board {
   display: grid;
-  grid-template-columns: repeat(var(--columns, 4), 1fr);
-  grid-auto-rows: 1fr;
+  /* Columns are sized by card content (aspect-ratio drives the width from the row height) */
+  grid-template-columns: repeat(var(--columns, 4), auto);
+  /* Rows fill the available height equally */
+  grid-template-rows: repeat(var(--rows, 4), 1fr);
   gap: clamp(4px, 1vmin, 10px);
-  width: 100%;
-  max-width: 900px;
   /* Fill all remaining vertical space in the flex column */
   flex: 1;
   min-height: 0;
+  /* Center horizontally when cards don't fill the full container width */
+  justify-content: center;
+  align-content: stretch;
   margin: 0 auto;
   padding: 0 clamp(8px, 2vw, 16px);
 }

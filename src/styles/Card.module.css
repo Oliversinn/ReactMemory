@@ -4,8 +4,10 @@
   perspective: 900px;
   cursor: pointer;
   user-select: none;
-  width: 100%;
-  /* Height is defined by grid-auto-rows: 1fr on the board — no aspect-ratio override */
+  /* Height fills the grid row; width is derived from the aspect ratio so proportions are preserved */
+  height: 100%;
+  width: auto;
+  aspect-ratio: 0.714; /* Standard Yu-Gi-Oh! card ratio */
 }
 
 .inner {
